@@ -1,0 +1,27 @@
+services:
+
+  db:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_DB: sgevendb
+      POSTGRES_USER: sgevenuser
+      POSTGRES_PASSWORD: sgevenpassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  sgeven-core:
+    build: .
+    volumes:
+      - .:/core
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_NAME: sgevendb
+      DB_USER: sgevenuser
+      DB_PASSWORD: sgevenpassword
+      DB_HOST: db
+      DB_PORT: 5432
+
+volumes:
+  postgres_data:
