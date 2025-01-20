@@ -5,7 +5,8 @@ services:
     environment:
       POSTGRES_DB: sgevendb
       POSTGRES_USER: sgevenuser
-      POSTGRES_PASSWORD: sgevenpassword
+      POSTGRES_PASSWORD: kLLsBEzoQOSIYsO2xUF6cWpuDgNMCWlV
+      DB_HOST: dpg-cu7c02ggph6c73b9tv2g-a
     volumes:
       - postgres_data:/var/lib/postgresql/data
   sgeven-core:
@@ -19,8 +20,8 @@ services:
     environment:
       DB_NAME: sgevendb
       DB_USER: sgevenuser
-      DB_PASSWORD: sgevenpassword
-      DB_HOST: db
+      DB_PASSWORD: kLLsBEzoQOSIYsO2xUF6cWpuDgNMCWlV
+      DB_HOST: dpg-cu7c02ggph6c73b9tv2g-a
       DB_PORT: 5432
 
 volumes:
