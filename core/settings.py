@@ -30,6 +30,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://sgeven.onrender.com',  # Adicione seu domínio aqui
+]
+
 
 # Application definition
 
