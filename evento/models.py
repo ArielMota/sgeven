@@ -19,7 +19,7 @@ class Command(BaseCommand):
         except ObjectDoesNotExist:
             # Crie o usuário admin se não existir
             User.objects.create_superuser(username=username, email=email, password=password)
-            self.stdout.write(self.style.SUCCESS(f'Usuário admin "{username}" criado com suc
+            self.stdout.write(self.style.SUCCESS(f'Usuário admin "{username}" criado com sucesso.'))
 
 # Modelo de Evento
 class Evento(models.Model):
