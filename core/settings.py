@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': 'sgevendb',
         'USER': 'sgevenuser',
         'PASSWORD': 'kLLsBEzoQOSIYsO2xUF6cWpuDgNMCWlV',
-        'HOST': 'localhost',
+        'HOST': 'dpg-cu7c02ggph6c73b9tv2g-a',
         'PORT': '5432',
     }
 }
