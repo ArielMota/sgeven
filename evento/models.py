@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Modelo de Evento
 class Evento(models.Model):
     nome = models.CharField(max_length=100, verbose_name='Nome')
-    organizador = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Organizador')
+    organizador = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name='Organizador(a)')
     data_inicio = models.DateTimeField(verbose_name='Data de Início')
     data_fim = models.DateTimeField(verbose_name='Data de Término')
     local = models.CharField(max_length=255, verbose_name='Local', blank=True, null=True)
