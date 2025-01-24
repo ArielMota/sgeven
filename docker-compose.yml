@@ -32,6 +32,7 @@ services:
       DB_PORT: 5432
     networks:
       - sgeven-network
+    command: ["sh", "-c", "python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
 
   # Não há serviço de Nginx aqui, pois ele está sendo configurado na VM.
 
