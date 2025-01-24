@@ -22,12 +22,11 @@ COPY requirements.txt /core/
 RUN pip install --upgrade pip
 RUN pip install uwsgi  # Instalando o uwsgi
 RUN pip install --no-cache-dir -r requirements.txt
-RUN python manage.py 
 # Copiar o restante do código para dentro do contêiner
 COPY . /core/
 
 # Expor a porta que o Django vai rodar
 EXPOSE 8101
 
-# Comando para rodar o uWSGI, que servirá a aplicação Django
-CMD ["uwsgi", "--socket", "/tmp/sgeven.sock", "--module", "core.wsgi:application"]
+# Rodar as migrações e depois iniciar o servidor uwsgi
+CMD ["sh", "-c", "python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
