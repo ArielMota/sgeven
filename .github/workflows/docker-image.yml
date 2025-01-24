@@ -60,5 +60,7 @@ jobs:
           docker-compose down && \
             
           # Levantar os containers novamente, forçando a recriação
-          docker-compose up -d --build
+          docker-compose up -d --build && \
+
+          docker image prune
           "
