@@ -56,13 +56,13 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 Clone o repositório:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/repo-de-eventos-culturais.git
+git clone https://github.com/SEU_USUARIO/repositorio.git
 ```
 
 Navegue até o diretório do projeto:
 
 ```bash
-cd repo-de-eventos-culturais
+cd repositorio
 ```
 
 Inicie os containers Docker:
@@ -78,8 +78,8 @@ Acesse a aplicação localmente em [http://localhost:8000](http://localhost:8000
 Faça login na sua máquina virtual da Hostinger e clone o repositório:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/repo-de-eventos-culturais.git
-cd repo-de-eventos-culturais
+git clone https://github.com/SEU_USUARIO/repositorio.git
+cd repositorio
 ```
 
 Inicie os containers Docker:
