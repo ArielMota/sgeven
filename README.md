@@ -1,80 +1,111 @@
-### **Resumo do Projeto:**
+# API RESTful para Gestão de Eventos
 
-Este projeto é uma **API RESTful** desenvolvida utilizando **Django** e **Django REST Framework (DRF)**, com o foco em fornecer uma interface para gerenciar eventos e participantes. A API permite que **organizadores** criem, editem e visualizem eventos, enquanto **participantes** podem se inscrever nos eventos. A aplicação foi estruturada para funcionar de maneira escalável, com autenticação segura usando **JSON Web Tokens (JWT)**.
+## Descrição do Projeto
 
-Além disso, o projeto foi configurado para ser executado dentro de **containers Docker**, o que facilita o processo de desenvolvimento, testes e deployment, garantindo um ambiente de execução isolado e consistente.
+Este projeto é uma API RESTful desenvolvida utilizando Django e Django REST Framework (DRF), com o foco em fornecer uma interface para gerenciar eventos e participantes. 
 
-### **Funcionalidades Principais da API:**
+A API permite que organizadores criem, editem e visualizem eventos, enquanto participantes podem se inscrever nos eventos. A aplicação foi estruturada para funcionar de maneira escalável, com autenticação segura usando JSON Web Tokens (JWT).
 
-1. **Gestão de Eventos**:
-   - **Organizadores** podem criar, listar, editar e excluir eventos.
-   - **Campos de Evento** incluem: nome, data de início e término, local, e descrição.
-   - A API permite que os organizadores obtenham, modifiquem ou removam os eventos que criaram, com **filtragem e paginação** para facilitar a navegação.
+Além disso, o projeto foi configurado para ser executado dentro de containers Docker, facilitando o processo de desenvolvimento, testes e deployment, garantindo um ambiente de execução isolado e consistente.
 
-2. **Gestão de Participantes**:
-   - **Participantes** podem se inscrever nos eventos através da API.
-   - Cada inscrição é associada a um evento, e os participantes fornecem informações como nome, email e data de inscrição.
+## Funcionalidades Principais da API
 
-3. **Autenticação de Usuário**:
-   - Utilização do sistema de autenticação integrado do Django para criar **superusuários** e **usuários comuns**.
-   - **JSON Web Tokens (JWT)** são utilizados para autenticação, permitindo sessões seguras e escaláveis sem a necessidade de armazenar informações no servidor.
-   - A API está protegida por autenticação JWT, onde o usuário precisa fornecer um token válido para acessar os endpoints protegidos.
+### Gestão de Eventos:
+- Organizadores podem criar, listar, editar e excluir eventos.
+- Campos de Evento incluem: nome, data de início e término, local e descrição.
+- A API permite que os organizadores obtenham, modifiquem ou removam os eventos que criaram, com filtragem e paginação para facilitar a navegação.
 
-4. **Permissões e Autorização**:
-   - **Permissões personalizadas** foram criadas para garantir que apenas o organizador de um evento tenha acesso para editar ou visualizar os eventos que criou.
-   - **Superusuário** tem acesso completo para administrar a API e todos os seus recursos.
+### Gestão de Participantes:
+- Participantes podem se inscrever nos eventos através da API.
+- Cada inscrição é associada a um evento, e os participantes fornecem informações como nome, email e data de inscrição.
 
-5. **Filtragem e Paginamento**:
-   - A API permite **filtragem avançada** de eventos e participantes usando **DJ-RQL** (Django Relational Query Language), facilitando a busca de eventos por parâmetros como nome, data de início, e participantes.
-   - **Paginamento** está configurado para limitar o número de itens por página, o que melhora a performance ao lidar com grandes volumes de dados.
+### Autenticação de Usuário:
+- Utilização do sistema de autenticação integrado do Django para criar superusuários e usuários comuns.
+- JSON Web Tokens (JWT) são utilizados para autenticação, permitindo sessões seguras e escaláveis sem a necessidade de armazenar informações no servidor.
+- A API está protegida por autenticação JWT, onde o usuário precisa fornecer um token válido para acessar os endpoints protegidos.
 
-### **Tecnologias Utilizadas:**
+### Permissões e Autorização:
+- Apenas o organizador de um evento tem acesso para editar ou visualizar os eventos que criou.
+- Superusuário tem acesso completo para administrar a API e todos os seus recursos.
 
-1. **Django**:
-   - Framework web robusto para o desenvolvimento de aplicações, utilizado para criar a estrutura da API, gerenciar models, views, URLs e a administração.
+### Filtragem e Paginação:
+- A API permite filtragem avançada de eventos e participantes usando DJ-RQL (Django Relational Query Language).
+- Paginamento configurado para limitar o número de itens por página, melhorando a performance.
 
-2. **Django REST Framework (DRF)**:
-   - Framework para construir APIs RESTful em Django. Ele fornece ferramentas para criar serializadores, viewsets e rotas de maneira rápida e fácil.
-   - Utilizado para criar a API que manipula eventos, participantes e autenticação de usuários.
+## Tecnologias Utilizadas
 
-3. **PostgreSQL**:
-   - Banco de dados relacional utilizado para armazenar informações dos eventos, participantes e usuários.
-   - Conectado à aplicação via Django ORM (Object-Relational Mapping) para facilitar o gerenciamento de dados.
+### Backend:
+- **Python / Django**: Framework utilizado para o desenvolvimento do backend da aplicação.
+- **Django REST Framework (DRF)**: Utilizado para criar a API RESTful.
+- **PostgreSQL**: Banco de dados relacional utilizado para armazenar os dados da aplicação.
+- **JWT (JSON Web Token)**: Utilizado para autenticação segura.
 
-4. **JWT (JSON Web Token)**:
-   - Utilizado para autenticação de usuários na API. O **`rest_framework_simplejwt`** é integrado para gerenciar tokens de acesso e refresh.
-   - Isso permite que a API seja escalável e que a autenticação seja sem estado, onde o servidor não precisa manter informações sobre o usuário entre as requisições.
+### Infraestrutura e Deploy:
+- **Docker**: Utilizado para containerizar a aplicação, garantindo consistência entre os ambientes de desenvolvimento, testes e produção.
+- **GitHub Actions**: Configuração de uma pipeline de CI/CD para automação de deploy contínuo.
+- **VM Hostinger**: Servidor onde o protótipo foi hospedado, utilizando uma máquina virtual para controle total do ambiente de produção.
 
-5. **DJ-RQL**:
-   - **Django Relational Query Language**: Biblioteca para realizar filtragem avançada em consultas Django. A API pode filtrar eventos e participantes de maneira dinâmica e eficiente com base em parâmetros fornecidos na URL da requisição.
+## Como Rodar Localmente
 
-6. **Docker**:
-   - O projeto foi configurado para rodar dentro de **containers Docker**, o que garante um ambiente de execução consistente e isolado, independentemente de onde a aplicação está sendo executada.
-   - **Dockerfile**: Define a imagem Docker para a aplicação Django, com todos os pacotes e dependências necessários, além da configuração do servidor.
-   - **Docker Compose**: Usado para orquestrar múltiplos containers (um para o Django e outro para o PostgreSQL), facilitando a execução da aplicação em ambientes de desenvolvimento, teste ou produção.
+### Pré-requisitos
+Certifique-se de ter as seguintes ferramentas instaladas:
+- Docker
+- Docker Compose
 
-7. **Outras Ferramentas**:
-   - **Comandos Customizados do Django**: Foi implementado um comando para criar automaticamente um **usuário admin** após as migrações do banco de dados, facilitando a configuração inicial do sistema.
-   - **Permissões Customizadas**: Permissões específicas foram criadas para garantir que apenas o organizador de um evento tenha acesso a editar ou visualizar os eventos que criou, utilizando a classe `EventoOrganizadorPermission`.
+### Passos
+Clone o repositório:
 
-### **Docker e Containers no Projeto**:
+```bash
+git clone https://github.com/SEU_USUARIO/repo-de-eventos-culturais.git
+```
 
-1. **Dockerfile**:
-   - O **Dockerfile** define a imagem do Docker para a aplicação Django, especificando a instalação das dependências, a configuração do ambiente e o comando para rodar o servidor da aplicação.
-   
-2. **Docker Compose**:
-   - O **Docker Compose** foi utilizado para gerenciar os múltiplos containers necessários para a aplicação:
-     - **Container para o PostgreSQL**: Este container roda o banco de dados PostgreSQL, armazenando as informações dos eventos e participantes.
-     - **Container para o Django**: O container que executa o servidor Django e expõe a API na porta configurada (8000).
-   
-3. **Vantagens do Uso de Docker**:
-   - **Ambiente Consistente**: Com Docker, todos os desenvolvedores e ambientes de produção usam o mesmo ambiente de execução, eliminando problemas de "funciona na minha máquina".
-   - **Facilidade de Setup e Deploy**: Novos desenvolvedores podem rodar o projeto localmente com um único comando, sem a necessidade de configurar manualmente o banco de dados ou outras dependências.
-   - **Isolamento de Dependências**: O Docker garante que as dependências de cada serviço (Django, PostgreSQL) não entrem em conflito com outras partes do sistema operacional ou outras aplicações.
-   - **Escalabilidade**: Docker facilita a escalabilidade da aplicação, permitindo adicionar mais containers conforme a necessidade, especialmente útil em ambientes de produção.
+Navegue até o diretório do projeto:
 
-### **Conclusão:**
+```bash
+cd repo-de-eventos-culturais
+```
 
-Este projeto é uma **API RESTful** construída com **Django** e **Django REST Framework**, permitindo que organizadores gerenciem eventos e que participantes se inscrevam nesses eventos. A autenticação é feita utilizando **JSON Web Tokens (JWT)**, garantindo uma solução segura e escalável.
+Inicie os containers Docker:
 
-O uso de **Docker** e **Docker Compose** permite que a aplicação rode de forma isolada e consistente em diferentes ambientes, tornando o desenvolvimento, testes e deployment mais simples e eficientes. O projeto oferece uma estrutura robusta e facilmente escalável para gerenciar eventos e inscrições de forma eficiente.
+```bash
+docker-compose up --build
+```
+
+Acesse a aplicação localmente em [http://localhost:8000](http://localhost:8000).
+
+## Como Rodar no Servidor (Hostinger)
+
+Faça login na sua máquina virtual da Hostinger e clone o repositório:
+
+```bash
+git clone https://github.com/SEU_USUARIO/repo-de-eventos-culturais.git
+cd repo-de-eventos-culturais
+```
+
+Inicie os containers Docker:
+
+```bash
+docker-compose up --build -d
+```
+
+Acesse a aplicação via IP do servidor ou domínio configurado.
+
+## Automação de Deploy (CI/CD)
+A pipeline de CI/CD foi configurada com GitHub Actions. Sempre que um commit é feito no repositório, o código é automaticamente enviado para o servidor de produção, garantindo que a aplicação esteja sempre atualizada.
+
+## Estrutura do Projeto
+
+```plaintext
+/
+├── docker-compose.yml       # Configuração para iniciar os containers Docker
+├── Dockerfile               # Arquivo Docker para construir o ambiente da aplicação
+├── backend/                 # Código-fonte do backend Django
+│   └── core/                # Aplicação principal do Django
+└── .github/workflows/       # Configuração da pipeline de CI/CD
+```
+
+## Contribuição
+Pull requests são bem-vindos. Para mudanças significativas, abra uma issue primeiro para discutir o que você gostaria de modificar.
+
+## Licença
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
