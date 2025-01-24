@@ -50,6 +50,7 @@ jobs:
           cd /var/www/sgeven && \
           
           # Atualizar o repositório com a versão mais recente do Git
+          git stash && \
           git pull --rebase && \
             
           # Puxar a última versão da imagem Docker
