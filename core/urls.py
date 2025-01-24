@@ -9,5 +9,5 @@ urlpatterns = [
 
     path('api/v1/token/refresh/', jwt_views.TokenRefreshView.as_view(),name='token_refresh'),
 
-    path('api/v1/', include('evento.urls')),
+    path('api/v2/', include('evento.urls')),
 ]
