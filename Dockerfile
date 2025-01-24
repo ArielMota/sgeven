@@ -29,4 +29,4 @@ COPY . /core/
 EXPOSE 8101
 
 # Rodar as migrações e depois iniciar o servidor uwsgi
-CMD ["sh", "-c", "python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
+CMD ["sh", "-c", "manage.py makemigrations && python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
