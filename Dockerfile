@@ -31,4 +31,4 @@ COPY . /core/
 EXPOSE 8101
 
 # Comando para rodar o uWSGI, que servirá a aplicação Django
-CMD ["uwsgi", "--socket", "/tmp/culturaipora.sock", "--module", "core.wsgi:application"]
+CMD ["uwsgi", "--socket", "/tmp/sgeven.sock", "--module", "core.wsgi:application"]
