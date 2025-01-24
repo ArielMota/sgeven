@@ -63,5 +63,5 @@ jobs:
           docker-compose up -d --build && \
 
           #Limpar imagens não utilizadas para liberar espaço
-          docker image prune
+          docker image prune -f
           "
