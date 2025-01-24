@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   db:
     image: postgres:13-alpine
     ports:
@@ -33,8 +32,6 @@ services:
     networks:
       - sgeven-network
     command: ["sh", "-c", "python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
-
-  # Não há serviço de Nginx aqui, pois ele está sendo configurado na VM.
 
 volumes:
   postgres_data:
