@@ -44,6 +44,7 @@ Além disso, o projeto foi configurado para ser executado dentro de containers D
 - **Docker**: Utilizado para containerizar a aplicação, garantindo consistência entre os ambientes de desenvolvimento, testes e produção.
 - **GitHub Actions**: Configuração de uma pipeline de CI/CD para automação de deploy contínuo.
 - **VM Hostinger**: Servidor onde o protótipo foi hospedado, utilizando uma máquina virtual para controle total do ambiente de produção.
+- **Nginx**: Servidor web configurado na VM para atuar como um proxy reverso, gerenciando o tráfego HTTP e direcionando as requisições para o container da aplicação Django.
 
 ## Como Rodar Localmente
 
@@ -73,42 +74,6 @@ docker-compose up --build
 
 Acesse a aplicação localmente em [http://localhost:8000](http://localhost:8000).
 
-## Configuração de Portas no Docker
-
-### No `docker-compose.yml`
-- **Ambiente Local:**  
-  ```yaml
-  services:
-    web:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      ports:
-        - "8000:8000"  # A porta local (host) pode ser alterada conforme necessário
-  ```
-- **Ambiente de Produção:**  
-  ```yaml
-  services:
-    web:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      ports:
-        - "80:8000"  # Mapeando a porta 80 do servidor para a 8000 do container
-  ```
-
-### No `Dockerfile`
-Se estiver rodando localmente com o Django, você pode definir:  
-```dockerfile
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-```
-Em produção, usando `uWSGI`, algo como:  
-```dockerfile
-CMD ["uwsgi", "--socket", "/tmp/culturaipora.sock", "--module", "core.wsgi:application"]
-```
-
-Isso garante que a aplicação esteja configurada corretamente para cada ambiente.
-
 ## Como Rodar no Servidor (Hostinger)
 
 Faça login na sua máquina virtual da Hostinger e clone o repositório:
@@ -135,8 +100,6 @@ A pipeline de CI/CD foi configurada com GitHub Actions. Sempre que um commit é 
 /
 ├── docker-compose.yml       # Configuração para iniciar os containers Docker
 ├── Dockerfile               # Arquivo Docker para construir o ambiente da aplicação
-├── backend/                 # Código-fonte do backend Django
-│   └── core/                # Aplicação principal do Django
 └── .github/workflows/       # Configuração da pipeline de CI/CD
 ```
 
