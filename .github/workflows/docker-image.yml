@@ -62,5 +62,6 @@ jobs:
           # Levantar os containers novamente, forçando a recriação
           docker-compose up -d --build && \
 
+          #Limpar imagens não utilizadas para liberar espaço
           docker image prune
           "
