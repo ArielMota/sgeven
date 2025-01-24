@@ -1,19 +1,27 @@
+version: '3.8'
+
 services:
 
   db:
     image: postgres:13-alpine
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_DB: sgevendb
       POSTGRES_USER: sgevenuser
       POSTGRES_PASSWORD: sgevenpassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sgeven-network
+
   sgeven-core:
     build: .
     volumes:
       - .:/core
+      - /tmp:/tmp  # Para socket Unix, se necessário
     ports:
-      - "8000:8000"
+      - "8101:8101"
     depends_on:
       - db
     environment:
@@ -22,6 +30,14 @@ services:
       DB_PASSWORD: sgevenpassword
       DB_HOST: db
       DB_PORT: 5432
+    networks:
+      - sgeven-network
+
+  # Não há serviço de Nginx aqui, pois ele está sendo configurado na VM.
 
 volumes:
   postgres_data:
+
+networks:
+  sgeven-network:
+    driver: bridge
