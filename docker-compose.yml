@@ -31,7 +31,7 @@ services:
       DB_PORT: 5432
     networks:
       - sgeven-network
-    command: ["sh", "-c", "manage.py makemigrations && python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
+    command: ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && uwsgi --socket /tmp/sgeven.sock --module core.wsgi:application"]
 
 volumes:
   postgres_data:
