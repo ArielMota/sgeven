@@ -30,4 +30,4 @@ COPY . /core/
 EXPOSE 8101
 
 # Comando para rodar o uWSGI, que servirá a aplicação Django
-CMD ["python manage.py migrate","uwsgi", "--socket", "/tmp/sgeven.sock", "--module", "core.wsgi:application"]
+CMD ["python manage.py migrate && uwsgi", "--socket", "/tmp/sgeven.sock", "--module", "core.wsgi:application"]
